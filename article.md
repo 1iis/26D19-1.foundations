@@ -1,9 +1,12 @@
+![alt text](img/2616.6.2235.png)
+
+[📰 𝕏]() | [🔥 **Abridged**]() | [😼 **GitHub**](https://github.com/1iis/26D19-1.foundations) | [📚 **SolveIT**]() | [Ⓜ️ **Markdown**](https://github.com/1iis/26D19-1.foundations/blob/main/article.md) | [🗒️ **Raw**](https://github.com/1iis/26D19-1.foundations/raw/refs/heads/main/article.md) |
+| --- | --- | --- | --- | --- | --- |
+
 # Dockerizing SGLang + vLLM on local RTX 3090
 
 > **Mission 1: Foundations**  
 > *Let's discover the basics of running fast local inference jobs!*
-
-| 😼 [GitHub](https://github.com/1iis/26D19-1.foundations) | Ⓜ️ [Markdown]() | 🤏 [Abridged TL;DR / fast recipe]() | 
 
 ---
 
@@ -16,7 +19,8 @@ We implement a template to deploy two major AI inference engines: [**SGLang**](h
 >
 > [![xpost](img/2616.7.1304.png)](https://x.com/1i__is/status/2045325838640456019)
 
-The goal here isn't to do anything special. Just to get our feet wet, run some GPU inference, see the parts and how they may be wired together. Good foundations for our brain and PC going forward!
+The goal here isn't to do anything special.  
+Just to get our feet wet, run some GPU inference, see the parts and how they may be wired together. Good foundations for our brain and PC going forward!
 
 Running AI models is a straightforward server-client architecture.  
 For this mission, two files:
@@ -50,11 +54,12 @@ I've included two Python scripts.
 First, make sure your host machine has the latest Nvidia drivers for your GPU (on Kubuntu 24.04, I have 590 / CUDA 13.1 at the time of writing).
 
 Use your distribution's preferred method to install.
-- On Gnome, it's in the app **Software Sources** > Additional** Drivers**.
+- On Gnome, it's in the app **Software Sources** > **Additional Drivers**.
 - On KDE you can open that from **Settings** > **Driver Manager**.
-- On Ubuntu, **`sudo ubuntu-drivers autoinstall`** also works (haven't tested myself recently), but GUI is fine if you have it.
+- On Ubuntu, **`sudo ubuntu-drivers autoinstall`** should work.
 
-> Note: I was on 570 (hadn't upgraded in a while), and 590 failed to install. I solved the issue by going first to 580, then 590 (reboot each time).
+> Note: I was on 570 (hadn't upgraded in a while), and 590 failed to install.  
+> I solved the issue by going first to 580, then 590 (reboot each time).
 
 ![nvidia-driver](img/2616.6.2204.png)
 
@@ -80,7 +85,9 @@ zsh: command not found: nvcc
 > 💡 ***That's the whole point of using Docker:**  
 We use CUDA from isolated containers, thus letting us play with **any specific CUDA version** ≤ host, which is agnostic to what our containers run. The images we use (SGLang, vLLM) pack everything we need. No need to destroy your native host to accommodate multiple incompatible packages/versions (same idea as venvs; same limitation as with Linux host kernel version in containers).*
 
-Speaking of which, if you haven't already, [install Docker](https://docs.docker.com/engine/install/) (follow the steps for your Linux distribution).
+Speaking of which, if you haven't already, [install Docker](https://docs.docker.com/engine/install/).
+(Follow the steps for your Linux distribution.)
+
 ```bash
 docker --version   
 Docker version 29.4.0, build 9d7ad9f

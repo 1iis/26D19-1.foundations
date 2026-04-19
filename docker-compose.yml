@@ -1,0 +1,66 @@
+services:
+
+  qwen35-4b-sglang:
+    image: lmsysorg/sglang:latest
+    container_name: qwen35-4b-sglang
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ipc: host
+    shm_size: 32g
+    ports:
+      - "8001:8000"
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    command: >
+      sglang serve
+        --model-path Qwen/Qwen3.5-4B
+        --port 8000
+        --host 0.0.0.0
+        --tp-size 1
+        --mem-fraction-static 0.83
+        --context-length 262144
+        --kv-cache-dtype fp8_e4m3
+        --reasoning-parser qwen3
+    restart: no
+    profiles: ["sglang"]
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+
+  qwen35-4b-vllm:
+    image: vllm/vllm-openai:latest
+    container_name: qwen35-4b-vllm
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ipc: host
+    shm_size: 32g
+    ports:
+      - "8002:8000"
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    command: >
+      Qwen/Qwen3.5-4B
+      --served-model-name Qwen/Qwen3.5-4B
+      --port 8000
+      --host 0.0.0.0
+      --tensor-parallel-size 1
+      --gpu-memory-utilization 0.78
+      --max-model-len 262144
+      --kv-cache-dtype fp8_e4m3
+      --reasoning-parser qwen3
+      --enable-prefix-caching
+      --enable-chunked-prefill
+      --max-num-seqs 64
+    restart: no
+    profiles: ["vllm"]
+    environment:
+      - HF_TOKEN=${HF_TOKEN}

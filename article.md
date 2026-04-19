@@ -183,16 +183,37 @@ services:
 
 > 👾 *In a future article, we'll discuss these and more command flags, see how we can review startup logs to tighten our configuration, and discover neat features of these engines.*
 
-Launch the service/profile with:
+🤗 [`HF_TOKEN`](https://huggingface.co/settings/tokens): You should have a [Hugging Face](https://huggingface.co/) account, and proceed to [**create a Read Access Token**](https://huggingface.co/settings/tokens/new?tokenType=read). It'll help [accelerate downloads](https://huggingface.co/docs/huggingface_hub/en/package_reference/environment_variables#hfxethighperformance).
+
+![HF_TOKEN creation](img/2616.7.1418.png)
+> *Choose whichever token name makes sense to you.*
+
+To reproduce this deployment, you may download/clone the repo with all files (a), or copy/paste files manually (b).
+
+- (a) Repo (easier, faster):
+  ```bash
+  # Pick one:
+  git clone https://github.com/1iis/26D19-1.foundations.git
+  git clone git@github.com:1iis/26D19-1.foundations.git
+  gh repo clone 1iis/26D19-1.foundations
+  
+  # Make it your current working dir
+  cd 26D19-1.foundations
+  ```
+
+- (b) Or manually:
+  ```bash
+  # navigate to a directory of your choice
+  cd <some_path>
+  
+  nano docker-compose.yml
+  # Paste the above YAML configuration: Ctrl + Shift + v
+  # Save: Ctrl + o → Enter
+  # Exit: Ctrl + x
+  ```
+
+Either way, from the same directory, launch the service/profile with:
 ```bash
-# navigate to a directory of your choice
-cd <some_path>
-
-nano docker-compose.yml
-# Paste the above YAML configuration: Ctrl + Shift + v
-# Save: Ctrl + o → Enter
-# Exit: Ctrl + x
-
 # Pick one:
 export COMPOSE_PROFILES=sglang
 export COMPOSE_PROFILES=vllm
@@ -200,23 +221,23 @@ export COMPOSE_PROFILES=vllm
 # Build it
 docker compose up -d   # will build the above choice
 
-# Delete it
-docker compose down   # removes the container entirely
+# Kill it
+docker compose down    # kill the container entirely
 ```
 
 Change the value of the environment variable `COMPOSE_PROFILES` to select the other engine. Alternatively, you can activate profiles directly (no env var needed) as shown below.
 ```bash
-# Build / delete SGLang
+# Build / kill SGLang
 docker compose --profile sglang up -d
 docker compose --profile sglang down
 
-# Build / delete vLLM
+# Build / kill vLLM
 docker compose --profile vllm up -d
 docker compose --profile vllm down
 ```
 
 🥵 **Troubleshooting**  
-If the build fails, it may be because you're tight on memory (logs should say so). In that case, you may decrease context or model size.
+If a build fails, it may be because you're tight on memory (logs should say so). In that case, you may decrease context, or model size.
 ```yaml
 # SGLang service
 command: >
@@ -250,7 +271,7 @@ docker compose logs -f qwen35-4b-vllm
 
 When the server is ready, the logs tell you so.
 
-For SGLang: **`The server is fired up and ready to roll!`**
+In SGLang: **`The server is fired up and ready to roll!`**
 ```
 INFO:     Started server process [1]
 INFO:     Waiting for application startup.
@@ -262,7 +283,7 @@ INFO:     127.0.0.1:47826 - "POST /v1/chat/completions HTTP/1.1" 200 OK
 The server is fired up and ready to roll!
 ```
 
-For vLLM: **`Application startup complete.`**
+In vLLM: **`Application startup complete.`**
 ```INFO 04-18 22:30:24 [api_server.py:594] Starting vLLM server on http://0.0.0.0:8000
 INFO 04-18 22:30:24 [launcher.py:37] Available routes are:
 INFO 04-18 22:30:24 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
@@ -297,7 +318,7 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
 
-You will then see logs printed for each inference request (see **5. Logs, continued**).
+You will then see logs printed upon inference requests (see **5. Logs, continued**).
 
 > 🔬 *In a later article about parameters for SGLang and vLLM, we'll study some of the information provided by those logs before the above excerpts. They provide very useful information about memory use, tokens in KV cache (effective context we can use), overhead (Samba, CUDA graphs, etc.), and other details worth knowing about our configuration.*
 
@@ -305,8 +326,9 @@ You will then see logs printed for each inference request (see **5. Logs, contin
 
 ## 4. Client
 
-🆑 CLI
-The very first test you can run is a basic `curl`. Below is for SGLang, just change localhost port to `8002` for vLLM. This will return a JSON object, with `"content"` and `"reasoning_content"` fields that you may inspect.
+🆑 **CLI**  
+The very first test you can run is a basic `curl`.  
+Below is for SGLang, change localhost port to `8002` for vLLM.
 ```bash
 curl http://localhost:8001/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -317,7 +339,8 @@ curl http://localhost:8001/v1/chat/completions \
     "max_tokens": 4096
   }' | jq .
 ```
-👇
+
+👇 This returns a JSON object (pretty with jq), with `"content"` and `"reasoning_content"` fields that you may inspect.
 
 ![json output](img/2616.7.0658.png)
 
@@ -329,9 +352,8 @@ curl http://localhost:8001/v1/chat/completions \
 ---
 
 🅾️ **OpenAI environment variables**  
-For the Python scripts, we use the OpenAI library which automatically sources these two environment variables. This lets us keep our script generic, no hardcoded port or URL.
+For the Python scripts, we use the OpenAI library which automatically sources the following two environment variables. This lets us keep our script generic, no hardcoded port or URL.
 ```bash
-# Always for local inference
 export OPENAI_API_KEY="EMPTY"
 
 # Pick one:
@@ -350,17 +372,17 @@ Now, two Python scripts for tests.
 🅰️ **Text + Vision input → Streaming output**  
 The first test sends an image and a question, to test multimodal input with vision, and stream output nicely printed in the terminal.
 
-![Comuna 13](e42edc33-b686-4cce-991f-50922c1ad41c.jpeg)
+![Comuna 13](img/e42edc33-b686-4cce-991f-50922c1ad41c.jpeg)
 
 > Comuna 13 in Bogotá, Colombia — viewed from the Origen rooftop bar.
 
-Create a Python file:
+Create a Python file if you haven't cloned the repo:
 ```bash
 nano test_stream.py
 ```
 
-Paste the script below into it ( Ctrl + Shift + v).  
-Then save and exit ( Ctrl + o → Enter → Ctrl + x ).
+Paste the script below into it ( <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>v</kbd>).  
+Then save and exit ( <kbd>Ctrl</kbd> + <kbd>o</kbd> ⇒ <kbd>Enter</kbd> ⇒ <kbd>Ctrl</kbd> + <kbd>x</kbd> ).
 
 ```python
 from openai import OpenAI
@@ -457,13 +479,15 @@ Tokens: CompletionUsage(completion_tokens=304, prompt_tokens=2470, total_tokens=
 🅱️ **Book-long input → Long output**  
 This second test sends a massive input (a whole book!) to stress-test context length.
 
-First, retrieve some content to send. I use the awesome [Project Gutenberg](https://www.gutenberg.org/), it's a great source for free public domain books in plain text (UTF-8).
+First, let's retrieve some content to send. I use the awesome [Project Gutenberg](https://www.gutenberg.org/), it's a great source for free public domain books in plain text (UTF-8).
 
 ![Project Gutenberg](img/2616.7.0441.png)
 https://www.gutenberg.org/ebooks/search/?sort_order=downloads
 
-- [Frankenstein](img/): **~99k** tokens
-- [Dracula](img/): **~216k** tokens
+- [Frankenstein](img/) **~99k** tokens
+- [Dracula](img/) **~216k** tokens
+
+<!-- [[TODO]]: Make a nice table with Qwen3.5 exact token count; refine books in the repo (or make a dedicated repo for that and other samples); calc remaining tokens and % of 262,144 -->
 
 ```bash
 # Use wget
@@ -571,7 +595,7 @@ qwen35-4b-vllm  | (APIServer pid=1) INFO 04-18 22:50:24 [loggers.py:259] Engine 
 qwen35-4b-vllm  | (APIServer pid=1) INFO 04-18 22:50:34 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 42.8%, MM cache hit rate: 50.0%
 ```
 
-SGLang is a bit more verbose. Here we finish loading a whole book (~100k tokens, 36% of our context), then start generating the output, then simultaneously send a second request (a short one, our first test) which then outputs at the same time (you can see "gen throughput (token/s)" jump above 100).
+SGLang is a bit more verbose. Here we finish loading a whole book (~100k tokens, 36% of our context), then start generating the output, then simultaneously send a second request (a short one, our first test) which then outputs at the same time (you can see `gen throughput (token/s)` jump above 100).
 
 ```
 qwen35-4b-sglang  | [2026-04-18 23:02:13] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, full token usage: 0.34, mamba usage: 0.03, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 2643.06
@@ -606,7 +630,7 @@ AFAIK, maximum throughout for the GPU tends to be reached in the 6-12 range. But
 
 🆎 **Re-run the scripts** (both, and multiple instances, simultaneously!) to check that everything works fine, and that cache works: generation starts instantly when you re-send the book prompt over and over again!
 
-Look/grep for "cache":
+Look/`grep` for `"cache"`:
 
 - [`prefix`|`MM`] `cache hit rate: ...%` in vLLM
 - `cached-tokens: ...` in SGLang
@@ -619,15 +643,38 @@ Prefill batch, #new-seq: 1, #new-token: 973, #cached-token: 94208, ...
 
 ## 6. Hardware monitoring
 There's a lot to say here. You can use Prometheus, etc.  
-The first thing is to watch `nvidia-smi` or `btop` to monitor your GPU/VRAM usage, power, temperature.
-
-> 💡 *You may want to cap power for a negligible performance impact, or even undervolt the chip to let it run cooler (that's the fabled "silicon lottery", if you're lucky it may remain stable at way lower voltage than factory; but Nvidia does great binning so you won't get Pro-grade thermals either).*
+The first thing is to watch `nvidia-smi` or `btop` to monitor your GPU/VRAM usage, power draw, temperature.
 
 ```bash
-# Refresh every second
-nvidia-smi -l 1
+nvidia-smi -l 1   # Refresh every 1 second
+```
 
-# btop is cool : )
+![nvidia-smi](img/2616.7.1542.png)
+> *Type G: Graphics; Type C: CUDA.  
+> This GPU drives my display. Notice how Xorg + friends eat up nearly 6 GiB. This is why you want a dedicated GPU for AI if you can help it.*
+
+If temperature is above 65-ish (GPU wil throttle), check and enforce fan speed in the **Nvidia X Server Settings** app (should come with drivers).
+
+![Nvidia X Server Settings](img/2616.7.1519.png)
+
+> ⚡ *You may want to cap power for a negligible performance impact, or even undervolt the chip to let it run cooler (that's the fabled "silicon lottery", if you're lucky it may remain stable at way lower voltage than factory; but Nvidia does great binning so you won't get Pro-grade thermals either).*
+>
+> We'll discuss Power Limit in a dedicated article about hardware; but you can check `Current Power Limit` among other stats with `nvidia-smi -q -d POWER`.
+> 
+> ![NVSMI LOG POWER](img/2616.7.1528.png)
+> 
+> If you want to try a different Power Limit, you can do 
+> ```bash
+> sudo nvidia-smi -pm 1
+> sudo nvidia-smi -pl 270 # value in Watts
+> ```
+> It won't survive reboot unless you make it a systemd service, though.
+
+---
+
+Finally, **`btop`** is a favorite of mine for quick system monitoring.
+
+```bash
 sudo apt install btop
 # you may need to add "gpu0" to "Shown boxes" in the Menu (pic below)
 ```

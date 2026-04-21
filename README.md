@@ -11,8 +11,8 @@
 
 In this article, we implement a template to deploy two major AI GPU inference engines: [**SGLang**](https://www.sglang.io/) and [**vLLM**](https://vllm.ai/).
 
-Read the [full](https://github.com/1iis/m01/blob/main/article.md) version (beginner-friendly),  
-or the [abridged](https://github.com/1iis/m01/blob/main/abridged.md) (faster!) version.
+Read the **[full](article.md) version** (beginner-friendly),  
+or the (faster!) **[abridged](abridged.md)** **version**.
 
 ---
 

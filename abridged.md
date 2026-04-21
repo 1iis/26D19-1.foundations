@@ -1,18 +1,24 @@
 ![hero](img/2616.6.2235.png)
 
-| [📰 𝕏](# "X.com Article link") | [🔥 **Abridged**](https://github.com/1iis/m01/blob/main/abridged.md "WIP") | [😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
-| --- | --- | --- | --- | --- | --- |
+[😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files")
+| Full version | [📰 𝕏](# "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
+| --- | --- | --- | --- | --- |
+| 🔥**Abridged** | | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/abridged.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "best with GET, wget, curl")
 
-# [ABRIDGED] Dockerizing<br> SGLang + vLLM<br> on local RTX 3090
+# Dockerizing<br> SGLang + vLLM<br> on local RTX 3090<br>[ABRIDGED] 
 
 > **Mission 1: Foundations**  
 > *Let's discover the basics of running fast local inference jobs!*
+
+---
 
 > [!WARNING]
 > This ABRIDGED version assumes prior knowledge about Linux administration and LLM inference.  
 > If you are new to this, or want more information, please **check out the [full version](https://github.com/1iis/m01/blob/main/article.md) of this article!**
 
 ---
+
+## Intro
 
 We implement a template to deploy two major AI GPU inference engines: [**SGLang**](https://www.sglang.io/) and [**vLLM**](https://vllm.ai/).
 

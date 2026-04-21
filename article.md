@@ -1,7 +1,9 @@
 ![hero](img/2616.6.2235.png)
 
-| [📰 𝕏](# "X.com Article link") | [🔥 **Abridged**](https://github.com/1iis/m01/blob/main/abridged.md "WIP") | [😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
-| --- | --- | --- | --- | --- | --- |
+[😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files")
+| Full version | [📰 𝕏](# "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
+| --- | --- | --- | --- | --- |
+| **Abridged** | [📰 **𝕏**](https://x.com/1i__is/status/2046429247644791168 "X.com Abridged version") | [📚 **SolveIT**](https://share.solve.it.com/d/ab643991b1d68a22268ceeee6f4aa7d5) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/abridged.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "best with GET, wget, curl")
 
 # Dockerizing<br> SGLang + vLLM<br> on local RTX 3090
 

@@ -307,14 +307,13 @@ You may either:
 
   Then paste the above YAML configuration into it, save, and exit.
 
-  > [!TIP]
-  > [`nano` keyboard shortcuts](https://www.nano-editor.org/dist/latest/cheatsheet.html)
-  
-  > | Action | `nano` shortcut
-  > |--------|----------------
-  > |Paste | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
-  > |Save | <kbd>Ctrl</kbd> + <kbd>O</kbd> then <kbd>Enter</kbd>
-  > |Exit | <kbd>Ctrl</kbd> + <kbd>X</kbd>
+> [!TIP]
+> `nano` [keyboard shortcuts](https://www.nano-editor.org/dist/latest/cheatsheet.html)  
+> | Action | Shortcut
+> |--------|----------------
+> |Paste | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
+> |Save | <kbd>Ctrl</kbd> + <kbd>O</kbd> then <kbd>Enter</kbd>
+> |Exit | <kbd>Ctrl</kbd> + <kbd>X</kbd>
 
 Consider doing `git init` now. Versioning is very useful to debug/restore configurations.
 

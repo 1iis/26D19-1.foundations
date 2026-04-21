@@ -600,13 +600,27 @@ Check and enforce fan speed in the **Nvidia X Server Settings** app (should come
 
 Right now, you can check **`Current Power Limit`** with:
 ```bash
- nvidia-smi -q -d POWER
+ nvidia-smi -q -d POWER -l 2
 ```
 
-![NVSMI LOG POWER](img/2617.2.0026.png)
-> *Add* `-l 2` *to monitor Instantaneous Power Draw while running inference.*
+```
+    GPU Power Readings
+        Average Power Draw                             : 46.28 W
+        Instantaneous Power Draw                       : 54.28 W
+        Current Power Limit                            : 300.00 W
+        Requested Power Limit                          : 300.00 W
+        Default Power Limit                            : 420.00 W
+        Min Power Limit                                : 100.00 W
+        Max Power Limit                                : 450.00 W
+    Power Samples
+        Duration                                       : 6.32 sec
+        Number of Samples                              : 119
+        Max                                            : 67.46 W
+        Min                                            : 42.01 W
+        Avg                                            : 46.63 W
+```
 
-If you want to try a different setting, you can issue a new **Requested Power Limit**.
+You may issue a new **Requested Power Limit**.
 ```bash
 sudo nvidia-smi -pm 1
 sudo nvidia-smi -pl 300  # value in Watts
@@ -614,12 +628,12 @@ nvidia-smi -q -d POWER   # check effects
 ```
 
 This should now read as your **Current Power Limit**.  
-It won't survive reboot though, unless you make it a `systemd` `service`, or DE script.
+It won't survive reboot (requires a `systemd` `service`, or DE script).
 
 > [!CAUTION]
 > **NEVER** mess with power settings beyond the **Min/Max Power Limit** range.
 > 
-> For our purposes, about ¼ to ⅓ **below** the **Default Power Limit** (420 W on this EVGA 3090) is usually where we want to live, for most GPUs. In my case, running at 300 W instead yields -10°C, 30% cheaper bill, and about the same performance.
+> For our purposes, about ¼ to ⅓ **below** the **Default Power Limit** is usually where we want to live, for most GPUs. In my case, running at 300 W instead yields -10°C, 30% cheaper bill, and about the same performance.
 
 ---
 

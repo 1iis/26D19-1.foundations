@@ -1,20 +1,20 @@
 ![hero](img/2616.6.2235.png)
 
-[😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files")
-| Full version | [📰 𝕏](# "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
-| --- | --- | --- | --- | --- |
-| **Abridged** | [📰 **𝕏**](https://x.com/1i__is/status/2046429247644791168 "X.com Abridged version") | [📚 **SolveIT**](https://share.solve.it.com/d/ab643991b1d68a22268ceeee6f4aa7d5) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/abridged.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "best with GET, wget, curl")
-
-# Dockerizing<br> SGLang + vLLM<br> on local RTX 3090
+# Dockerizing SGLang + vLLM on local RTX 3090
 
 > **Mission 1: Foundations**  
 > *Let's discover the basics of running fast local inference jobs!*
+
+[😼 **GitHub `1iis/m01`**](https://github.com/1iis/m01 "1iis/m01 repo with all files") repository
+| Full version | [📰 𝕏](# "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
+| --- | --- | --- | --- | --- |
+| **Abridged** | [📰 **𝕏**](https://x.com/1i__is/status/2046429247644791168 "X.com Abridged version") | [📚 **SolveIT**](https://share.solve.it.com/d/ab643991b1d68a22268ceeee6f4aa7d5) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/abridged.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "best with GET, wget, curl")
 
 ---
 
 ## Introduction
 
-We implement a template to deploy two major AI GPU inference engines: [**SGLang**](https://www.sglang.io/) and [**vLLM**](https://vllm.ai/).
+We implement a template to deploy and test two major AI GPU inference engines: [**SGLang**](https://www.sglang.io/) and [**vLLM**](https://vllm.ai/).
 
 ### Why
 
@@ -26,9 +26,9 @@ I'm far from having an informed opinion, but AFAICT:
 
 > [!NOTE]
 > *They're capable of doing CPU offload.  
-> But for that you may prefer a common implementation of `llama.cpp` such as Unsloth Studio or LMStudio.*
+> But for that you may prefer a common implementation of `llama.cpp` such as Ollama, Unsloth Studio, or LMStudio.*
 > 
-> *Here, we expect to run everything in-GPU.*
+> *Here, we expect to run everything in-GPU. As fast as it gets.*
 
 The goal here isn't to do anything special.  
 Just to get our feet wet, run some GPU inference, see the parts and how they may be wired together.  
@@ -98,7 +98,7 @@ zsh: command not found: nvcc
 ```
 
 > [!IMPORTANT]
-> **Containers being CUDA-agnostic makes Docker a great fit for our purpose**
+> **Docker makes our setup CUDA-agnostic**
 > 
 > We leverage CUDA from the software contained in isolated containers.  
 > This enables us to play with **any specific CUDA version** ≤ host, which is agnostic to what our containers run. The images we use (SGLang, vLLM) pack everything we need. No need to destroy your native host to accommodate multiple incompatible packages/versions (same idea as `venv`s; same limitation as with `linux` kernel host version in containers).
@@ -219,7 +219,7 @@ The LLM demonstrated here is **Qwen3.5-4B** (full **16-bit** precision, most str
 Three things you may want to adjust *now:* `HF_TOKEN` (get one or remove those lines), context size, and model choice.
 
 - 🤗 **[`HF_TOKEN`](https://huggingface.co/settings/tokens)**
-  > Optional: remove those two lines in the YAML if you won't have one.
+  > *Optional: remove those two lines in the YAML if you won't have one.*
   
   A [Hugging Face](https://huggingface.co/) (HF) Token to [accelerate downloads](https://huggingface.co/docs/huggingface_hub/en/package_reference/environment_variables#hfxethighperformance).  
 Signup for a free HF account, and proceed to [**create new Access Token**](https://huggingface.co/settings/tokens/new?tokenType=read) (Read).
@@ -309,6 +309,7 @@ You may either:
 
   > [!TIP]
   > [`nano` keyboard shortcuts](https://www.nano-editor.org/dist/latest/cheatsheet.html)
+  
   > | Action | `nano` shortcut
   > |--------|----------------
   > |Paste | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
@@ -568,9 +569,7 @@ python test_stream.py  # or however you named it
 # if Ubuntu complains / fails: alias python to python3
 echo "alias python=python3" >> ~/.bashrc && source ~/.bashrc
 ```
-👇
-
-Example output:
+👇 Example output:
 ```markdown
 This is **Bogotá, Colombia** — specifically, the view from a rooftop or elevated location overlooking the city’s dense hillside neighborhoods.
 
@@ -788,7 +787,7 @@ Inspecting that stuff is useful to get a feel for how different settings, client
   - **Cache hits** (how much of your prompt was already in cache)  
     vLLM: `Prefix cache hit rate: 42.8%, MM cache hit rate: 50.0%`  
 
-You can also see pretty obviously that processing several requests simultaneously (when there are `#running-req: 2`) makes the GPU yield more tokens overall, even if each concurrent request individually gets slightly less than a single one.  
+You can also see that processing several requests simultaneously (when there are `#running-req: 2`) makes the GPU yield more tokens overall, even if each concurrent request individually gets slightly less than a single one.  
 AFAIK, maximum throughout for the GPU tends to be reached in the 6-12 range. But I have no idea first-hand. I'll be testing this and much more scenarios in the future.
 
 ---

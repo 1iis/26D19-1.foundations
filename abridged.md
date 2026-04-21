@@ -157,6 +157,8 @@ services:
 
 The LLM demonstrated here is **Qwen3.5-4B** (full **16-bit** precision, most straightforward to run), with **FP8** KV cache to fit Qwen3.5's full context (`262,144` tokens) on a **single RTX 3090** or any 24 GB-class GPU.
 
+---
+
 ### About this configuration
 
 Three things you may want to adjust *now:* `HF_TOKEN` (get one or remove those lines), context size, and model choice.
@@ -185,6 +187,8 @@ Signup for a free HF account, and proceed to [**create new Access Token**](https
      Copy the name of the maker/model (e.g. `Qwen/Qwen3.5-0.8B`) and replace it in your config (three times, two for vLLM).
 
 - 👻 You may also rent a cloud GPU with ≥24 GB VRAM, but then you're on your own for the docker setup.
+
+---
 
 ### Deploy
 

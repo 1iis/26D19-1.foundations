@@ -386,10 +386,11 @@ Tokens: CompletionUsage(completion_tokens=304, prompt_tokens=2470, total_tokens=
 
 [`long_ctx.py`](https://github.com/1iis/m01/blob/main/long_ctx.py) sends a whole book to stress-test context length.
 
-I've used the awesome [Project Gutenberg](https://www.gutenberg.org/) to retrieve plain text (UTF-8) books. They''re in the [`books/`](https://github.com/1iis/m01/tree/main/books) dir in the repo.
+I've used the awesome [Project Gutenberg](https://www.gutenberg.org/) to retrieve plain text (UTF-8) books.  
+They're in the [`books/`](https://github.com/1iis/m01/tree/main/books) dir in the repo.
 
 Select books whose token count is below your declared context window length in `docker-compose.yml`.  
-For instance,
+For instance:
 - [Frankenstein](books/frankenstein.txt) **~99k** tokens: good for a 131k context;
 - [Dracula](books/dracula.txt) **~216k** tokens: good for a 262k context.
 

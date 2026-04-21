@@ -19,10 +19,10 @@ or the [abridged](https://github.com/1iis/m01/blob/main/abridged.md) (faster!) v
 ## Overview
 
 This is a typical server-client architecture:
-- 🅰️ Server: [`docker-compose.yml`](https://github.com/1iis/m01/blob/main/docker-compose.yml) configures containers for SGLang and vLLM to run [Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B).
+- 🅰️ Server: [`docker-compose.yml`](docker-compose.yml) configures containers for SGLang and vLLM to run [Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B).
 - 🅱️ Client:  
-[`test_stream.py`](https://github.com/1iis/m01/blob/main/test_stream.py) queries the server with an image and text prompt.  
-[`long_ctx.py`](https://github.com/1iis/m01/blob/main/long_ctx.py) stress-tests context length (KV cache) with one of the full [`books`](books) from Gutenberg.  
+[`test_stream.py`](test_stream.py) queries the server with an image and text prompt.  
+[`long_ctx.py`](long_ctx.py) stress-tests context length (KV cache) with one of the full [`books`](books) from Gutenberg.  
 
 ## Usage
 

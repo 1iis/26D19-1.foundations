@@ -1,6 +1,6 @@
-![alt text](img/2616.6.2235.png)
+![hero](img/2616.6.2235.png)
 
-| [📰 𝕏](# "will be known upon publishing the final draft") | [🔥 **Abridged**](https://github.com/1iis/m01/blob/main/abridged.md "WIP") | [😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
+| [📰 𝕏](# "X.com Article link") | [🔥 **Abridged**](https://github.com/1iis/m01/blob/main/abridged.md "WIP") | [😼 **GitHub**](https://github.com/1iis/m01 "1iis/m01 repo with all files") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663) | [Ⓜ️ **Markdown**](https://github.com/1iis/m01/blob/main/article.md "LLM-friendly input") | [🗒️ **Raw**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best with GET, wget, curl") |
 | --- | --- | --- | --- | --- | --- |
 
 # Dockerizing<br> SGLang + vLLM<br> on local RTX 3090
@@ -334,21 +334,6 @@ Otherwise, the GPU may get OOM (Out Of Memory) and the build will silently fail.
 
 If a build fails, it may be because you're too tight on memory (logs should say so). In that case, you may decrease context, or model size.
 
-```yaml
-# SGLang service
-command: >
-  sglang serve
-    --model-path Qwen/Qwen3.5-0.8B
-    ...
-    --context-length 131072
-
-# vLLM service
-command: >
-  Qwen/Qwen3.5-0.8B
-    ...
-    --max-model-len 131072
-```
-
 ---
 
 ## 3. Logs
@@ -383,7 +368,8 @@ When the server is ready, a log entry tells you so.
   ```
 
 - In vLLM: **`INFO:     Application startup complete.`**
-  ```INFO 04-18 22:30:24 [api_server.py:594] Starting vLLM server on http://0.0.0.0:8000
+  ```
+  INFO 04-18 22:30:24 [api_server.py:594] Starting vLLM server on http://0.0.0.0:8000
   INFO 04-18 22:30:24 [launcher.py:37] Available routes are:
   INFO 04-18 22:30:24 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
   INFO 04-18 22:30:24 [launcher.py:46] Route: /docs, Methods: HEAD, GET

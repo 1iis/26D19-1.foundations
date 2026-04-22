@@ -36,6 +36,14 @@ Clone this repo.
    ```
    Those settings are good for a 24 GB local GPU. Modify them if needed (*how to* in the article).
 
+> [!TIP]
+> Alternatively, same thing as above:
+> ```bash
+> export COMPOSE_PROFILES=sglang     # or =vllm
+> docker compose up -d               # --profile sglang not needed!
+> docker compose down
+> ```
+
 2. Define environment variables for the openai-compatible API.
    ```bash
    export OPENAI_API_KEY="EMPTY"

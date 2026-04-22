@@ -36,7 +36,13 @@ Clone this repo.
    ```
    Those settings are good for a 24 GB local GPU. Modify them if needed (*how to* in the article).
 
-2. Run inference:
+2. Define environment variables for the openai-compatible API.
+   ```bash
+   export COMPOSE_PROFILES=sglang; export OPENAI_BASE_URL="http://localhost:8001/v1"; export OPENAI_API_KEY="EMPTY"
+   export COMPOSE_PROFILES=vllm; export OPENAI_BASE_URL="http://localhost:8002/v1"; export OPENAI_API_KEY="EMPTY"
+   ```
+
+3. Run inference:
    ```bash
    python test_stream.py                    # quick test
    python long_ctx.py books/dracula.txt     # pushing context

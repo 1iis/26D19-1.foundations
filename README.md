@@ -38,8 +38,10 @@ Clone this repo.
 
 2. Define environment variables for the openai-compatible API.
    ```bash
-   export COMPOSE_PROFILES=sglang; export OPENAI_BASE_URL="http://localhost:8001/v1"; export OPENAI_API_KEY="EMPTY"
-   export COMPOSE_PROFILES=vllm; export OPENAI_BASE_URL="http://localhost:8002/v1"; export OPENAI_API_KEY="EMPTY"
+   export OPENAI_API_KEY="EMPTY"
+   
+   export OPENAI_BASE_URL="http://localhost:8001/v1"   # SGLang
+   export OPENAI_BASE_URL="http://localhost:8002/v1"   # vLLM
    ```
 
 3. Run inference:

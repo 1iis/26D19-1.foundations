@@ -16,7 +16,7 @@ or (faster!) the **[abridged](abridged.md)** **version**.
 Or just read below if you need no explaining.  
 
 > [!TIP]
-> Use `raw` versions of Markdown to feed LLMs (links at the top).
+> Use `raw` versions of Markdown to feed LLM/agents (links at the top).
 
 ---
 

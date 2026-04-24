@@ -67,9 +67,14 @@ Clone this repo.
    >     from openai import OpenAI
    > ModuleNotFoundError: No module named 'openai'
    > ```
-   > Then install that package.
+   > 
+   > Then proceed to install that package.  
    > Optionally, first make a virtual environment to keep your host clean.
    > ```bash
    > python -m venv .venv && source .venv/bin/activate   # venv creation & activation
-   > uv pip install -e .                                 # install deps listed in pyproject.toml
+   > 
+   > # Pick one:
+   > pip install -e .        # pip: install deps listed in pyproject.toml
+   > uv pip install -e .     # uv: same
+   > uv pip install openai   # install openai package directly
    > ```

@@ -5,3 +5,6 @@ dependencies = [
     "openai",
 ]
 requires-python = ">=3.9"
+
+[tool.setuptools]
+py-modules = []  # No Python modules to package

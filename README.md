@@ -1,8 +1,8 @@
 ![alt text](img/2616.6.2235.png)
 
-| Full version | [📰 𝕏](https://x.com/1i__is/status/2045790740584735038 "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663 "solve.it.com dialog (notebook)") | [Ⓜ️ **Markdown**](article.md "rendered, with images") | [🗒️ **`raw`**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "best for AI LLM agents: GET, wget, curl, read_url()…") |
+| Full version | [📰 𝕏](https://x.com/1i__is/status/2045790740584735038 "X.com Article link") | [📚 **SolveIT**](https://share.solve.it.com/d/ec8018951af13d01bc4dc8b03abb6663 "solve.it.com dialog (article.ipynb notebook)") | [Ⓜ️ **Markdown**](article.md "article.md rendered, with images") | [🗒️ **`raw`**](https://github.com/1iis/m01/raw/refs/heads/main/article.md "raw Markdown, best for AI LLM agents: GET, wget, curl, read_url()…") |
 | --- | --- | --- | --- | --- |
-| **Abridged** | [📰 **𝕏**](https://x.com/1i__is/status/2046429247644791168 "X.com Abridged version") | [📚 **SolveIT**](https://share.solve.it.com/d/ab643991b1d68a22268ceeee6f4aa7d5 "solve.it.com dialog (notebook)") | [Ⓜ️ **Markdown**](abridged.md "rendered, with images") | [🗒️ **`raw`**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "best for AI LLM agents: GET, wget, curl, read_url()…")
+| **Abridged** | [📰 **𝕏**](https://x.com/1i__is/status/2046429247644791168 "X.com Abridged link") | [📚 **SolveIT**](https://share.solve.it.com/d/ab643991b1d68a22268ceeee6f4aa7d5 "solve.it.com dialog (abridged.ipynb notebook)") | [Ⓜ️ **Markdown**](abridged.md "abridged.md rendered, with images") | [🗒️ **`raw`**](https://github.com/1iis/m01/raw/refs/heads/main/abridged.md "raw Markdown, best for AI LLM agents: GET, wget, curl, read_url()…")
 
 # Dockerizing<br> SGLang + vLLM<br> on local RTX 3090
 

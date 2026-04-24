@@ -12,8 +12,11 @@
 In this article, we implement a template to deploy two major AI GPU inference engines: [**SGLang**](https://www.sglang.io/) and [**vLLM**](https://vllm.ai/).
 
 Read the **[full](article.md) version** (beginner-friendly),  
-or the (faster!) **[abridged](abridged.md)** **version**.  
-Use `raw` links at the top to feed LLMs.
+or (faster!) the **[abridged](abridged.md)** **version**.  
+Or just read below if you need no explaining.  
+
+> [!TIP]
+> Use `raw` versions of Markdown to feed LLMs (links at the top).
 
 ---
 

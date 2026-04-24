@@ -57,3 +57,19 @@ Clone this repo.
    python test_stream.py                    # quick test
    python long_ctx.py books/dracula.txt     # pushing context
    ```
+
+   > [!TIP]
+   > If you get this error:
+   > 
+   > ```
+   > Traceback (most recent call last):
+   >   File "/home/kit/data/1/org/1iis/ai/Lab0/art/m01/test_stream.py", line 1, in <module>
+   >     from openai import OpenAI
+   > ModuleNotFoundError: No module named 'openai'
+   > ```
+   > Then install that package.
+   > Optionally, first make a virtual environment to keep your host clean.
+   > ```bash
+   > python -m venv .venv && source .venv/bin/activate   # venv creation & activation
+   > uv pip install -e .                                 # install deps listed in pyproject.toml
+   > ```
